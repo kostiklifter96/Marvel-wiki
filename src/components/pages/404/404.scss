@@ -1,0 +1,19 @@
+@import '../../../style/variables.scss';
+
+.page {
+   &__info {
+      text-align: center;
+      font-weight: bold;
+      font-size: 24px;
+   }
+   &__home {
+      display: block;
+      text-align: center;
+      font-weight: bold;
+      font-size: 24px;
+      margin-top: 30px;
+   }
+   &__home:hover {
+      color: #9f0013;
+   }
+}
