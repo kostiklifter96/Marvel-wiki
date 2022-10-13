@@ -7,60 +7,63 @@ import Spinner from '../../spinner/Spinner'
 import { Helmet } from 'react-helmet'
 
 const SingleComicPage = () => {
-   const { id } = useParams()
-   const [comic, setComic] = useState(null)
-   const { loading, error, getComics, clearError } = useMarvelService()
+  const { id } = useParams()
+  const [comic, setComic] = useState(null)
+  const { loading, error, getComics, clearError } = useMarvelService()
 
-   useEffect(() => {
-      updateComic()
-   }, [id])
+  useEffect(() => {
+    updateComic()
+  }, [id])
 
-   const updateComic = () => {
-      clearError()
-      getComics(id).then(onComicLoaded)
-   }
+  const updateComic = () => {
+    clearError()
+    getComics(id).then(onComicLoaded)
+  }
 
-   const onComicLoaded = (comic) => {
-      setComic(comic)
-   }
+  const onComicLoaded = (comic) => {
+    setComic(comic)
+  }
 
-   const errorMessage = error ? <ErrorMessage /> : null
-   const spinner = loading ? <Spinner /> : null
-   const content = !(loading || error || !comic) ? <View comic={comic} /> : null
+  const errorMessage = error ? <ErrorMessage /> : null
+  const spinner = loading ? <Spinner /> : null
+  const content = !(loading || error || !comic) ? (
+    <View comic={comic} />
+  ) : null
 
-   return (
-      <>
-         {errorMessage}
-         {spinner}
-         {content}
-      </>
-   )
+  return (
+    <>
+      {errorMessage}
+      {spinner}
+      {content}
+    </>
+  )
 }
 
 const View = ({ comic }) => {
-   const { title, descrption, pageCount, thumbnail, language, price } = comic
+  const { title, descrption, pageCount, thumbnail, language, price } =
+    comic
 
-   return (
-      <>
-         <Helmet>
-            <meta name="description" content={`${title} comics book`} />
-            <title>{title}</title>
-         </Helmet>
-         <div className="single-comic">
-            <img src={thumbnail} alt={title} className="single-comic__img" />
-            <div className="single-comic__info">
-               <h2 className="single-comic__name">{title}</h2>
-               <p className="single-comic__descr">{descrption}</p>
-               <p className="single-comic__descr">{pageCount} pages</p>
-               <p className="single-comic__descr">Language: {language}</p>
-               <div className="single-comic__price">{price}</div>
-            </div>
-            <Link to="/comics" className="single-comic__back">
-               Back to all
-            </Link>
-         </div>
-      </>
-   )
+  return (
+    <>
+      <Helmet>
+        <meta name='description' content={`${title} comics book`} />
+        <title>{title}</title>
+      </Helmet>
+      <div className='single-comic'>
+        <img src={thumbnail} alt={title} className='single-comic__img' />
+        <div className='single-comic__info'>
+          <h2 className='single-comic__name'>{title}</h2>
+          <p className='single-comic__descr'>{descrption}</p>
+          <p className='single-comic__descr'>{pageCount} pages</p>
+          <p className='single-comic__descr'>Language: {language}</p>
+          <div className='single-comic__price'>{price}</div>
+        </div>
+        <Link to='/comics' className='single-comic__back'>
+          Back to all
+        </Link>
+      </div>
+    </>
+  )
 }
 
 export default SingleComicPage

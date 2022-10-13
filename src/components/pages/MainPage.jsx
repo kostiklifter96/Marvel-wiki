@@ -9,38 +9,38 @@ import CharSearchForm from '../charSearchForm/СharSearchForm'
 import { Helmet } from 'react-helmet'
 
 export default function MainPage() {
-   const [selectedChar, setSelectedChar] = useState(null)
+  const [selectedChar, setSelectedChar] = useState(null)
 
-   const onCharSelected = (id) => {
-      setSelectedChar(id)
-   }
+  const onCharSelected = (id) => {
+    setSelectedChar(id)
+  }
 
-   return (
-      <>
-         <Helmet>
-            <meta name="description" content="Marvel information portal" />
-            <title>Marvel information portal</title>
-         </Helmet>
+  return (
+    <>
+      <Helmet>
+        <meta name='description' content='Marvel information portal' />
+        <title>Marvel information portal</title>
+      </Helmet>
 
-         <ErrorBoundary>
-            <RandomChar />
-         </ErrorBoundary>
+      <ErrorBoundary>
+        <RandomChar />
+      </ErrorBoundary>
 
-         <div className="char__content">
-            <ErrorBoundary>
-               <CharList onCharSelected={onCharSelected} />
-            </ErrorBoundary>
-            <div>
-               <ErrorBoundary>
-                  <CharInfo charId={selectedChar} />
-               </ErrorBoundary>
-               <ErrorBoundary>
-                  <CharSearchForm />
-               </ErrorBoundary>
-            </div>
-         </div>
+      <div className='char__content'>
+        <ErrorBoundary>
+          <CharList onCharSelected={onCharSelected} />
+        </ErrorBoundary>
+        <div>
+          <ErrorBoundary>
+            <CharInfo charId={selectedChar} />
+          </ErrorBoundary>
+          <ErrorBoundary>
+            <CharSearchForm />
+          </ErrorBoundary>
+        </div>
+      </div>
 
-         <img className="bg-decoration" src={decoration} alt="vision" />
-      </>
-   )
+      <img className='bg-decoration' src={decoration} alt='vision' />
+    </>
+  )
 }
