@@ -42,12 +42,6 @@ const CharSearchForm = () => {
       .then(() => setProcess('confirmed'))
   }
 
-  //   const errorMessage = error ? (
-  //     <div className='char__search-critical-error'>
-  //       <ErrorMessage />
-  //     </div>
-  //   ) : null
-
   const results = !char ? null : char.length > 0 ? (
     <div className='char__search-wrapper'>
       <div className='char__search-success'>
@@ -105,7 +99,7 @@ const CharSearchForm = () => {
           />
         </Form>
       </Formik>
-      {setContent(process, () => results)}
+      {setContent(process, () => results, newItemLoading)}
     </div>
   )
 }
